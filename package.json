@@ -10,13 +10,15 @@
   "scripts": {
     "commit": "git-cz",
     "build": "tsc",
-    "prepublish": "yarn run build"
+    "prepublish": "yarn run build",
+    "release": "git checkout master && standard-version && git push origin master && npm publish"
   },
   "devDependencies": {
     "@types/node": "^7.0.31",
     "@types/request-promise": "^4.1.34",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
+    "standard-version": "^4.2.0",
     "typescript": "^2.3.4"
   },
   "config": {
