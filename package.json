@@ -11,7 +11,7 @@
     "commit": "git-cz",
     "build": "tsc",
     "prepublish": "yarn run build",
-    "release": "git checkout master && standard-version && git push origin master && npm publish"
+    "release": "git checkout master && standard-version && git push --follow-tags origin master && npm publish"
   },
   "devDependencies": {
     "@types/node": "^7.0.31",
