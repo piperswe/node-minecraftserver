@@ -5,5 +5,17 @@
   "main": "index.js",
   "repository": "https://github.com/zebMcCorkle/node-minecraftserver",
   "author": "Zebulon McCorkle <zebmccorkle@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "commit": "git-cz"
+  },
+  "devDependencies": {
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
