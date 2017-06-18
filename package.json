@@ -2,12 +2,15 @@
   "name": "minecraftserver",
   "version": "0.1.0",
   "description": "An API for managing Minecraft server instances (especially useful for Minecraft web panels)",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
   "repository": "https://github.com/zebMcCorkle/node-minecraftserver",
   "author": "Zebulon McCorkle <zebmccorkle@gmail.com>",
   "license": "ISC",
   "scripts": {
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "build": "tsc",
+    "prepublish": "yarn run build"
   },
   "devDependencies": {
     "commitizen": "^2.9.6",
