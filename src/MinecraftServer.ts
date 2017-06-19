@@ -5,7 +5,7 @@ import mkdirp from 'mkdirp-promise';
 import Gamedig from 'gamedig';
 import { download } from './net';
 import { JavaProcess, executeJar } from './java';
-import { ServerProperties, exportServerProperties } from './serverProperties';
+import { ServerProperties, defaultServerProperties, exportServerProperties } from './serverProperties';
 
 export interface MinecraftServerConfig {
   directory: string;
@@ -51,6 +51,7 @@ export default class MinecraftServer {
 
     // Create server.properties file
     const serverPropertiesFile = join(this.config.directory, 'server.properties');
+    const properties = Object.assign({}, defaultServerProperties, this.config.properties);
     await writeFile(serverPropertiesFile, exportServerProperties(this.config.properties));
 
     // Agree to the EULA
