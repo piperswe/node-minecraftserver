@@ -10,7 +10,7 @@
   "scripts": {
     "commit": "git-cz",
     "build": "tsc",
-    "prepublish": "yarn run build",
+    "prepare": "yarn run build",
     "release": "git checkout master && standard-version --prerelease alpha && git push --follow-tags origin master && npm publish"
   },
   "devDependencies": {
