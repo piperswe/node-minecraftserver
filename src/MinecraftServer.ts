@@ -2,6 +2,7 @@ import { Stats, createWriteStream } from 'fs';
 import { stat } from './fsPromise';
 import { join } from 'path';
 import mkdirp from 'mkdirp-promise';
+import Gamedig from 'gamedig';
 import { download } from './net';
 import { JavaProcess, executeJar } from './java';
 
@@ -9,6 +10,13 @@ export interface MinecraftServerConfig {
   directory: string;
   jarURL: string;
   ram: number; // In megabytes
+}
+
+export interface QueryResult {
+  name: string;
+  players: Array<string>;
+  maxPlayers: number;
+  version: string;
 }
 
 export default class MinecraftServer {
@@ -46,5 +54,23 @@ export default class MinecraftServer {
 
   stop() {
     this.process.stop();
+  }
+
+  async query(): Promise<QueryResult> {
+    // NOTE: When server.properties generation is implemented, this should
+    // be modified to use server-ip and server-port.
+
+    const query = await Gamedig.query({
+      type: 'minecraftping',
+      host: 'localhost',
+      port: 25565,
+    });
+
+    return {
+      name: query.name,
+      players: query.players,
+      maxPlayers: query.maxplayers,
+      version: query.raw.version,
+    };
   }
 }

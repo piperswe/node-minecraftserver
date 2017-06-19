@@ -27,6 +27,7 @@
     }
   },
   "dependencies": {
+    "gamedig": "^0.2.28",
     "mkdirp-promise": "^5.0.1",
     "request": "^2.34",
     "request-promise": "^4.2.1"
