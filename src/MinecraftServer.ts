@@ -1,15 +1,17 @@
 import { Stats, createWriteStream } from 'fs';
-import { stat } from './fsPromise';
+import { stat, writeFile } from './fsPromise';
 import { join } from 'path';
 import mkdirp from 'mkdirp-promise';
 import Gamedig from 'gamedig';
 import { download } from './net';
 import { JavaProcess, executeJar } from './java';
+import { ServerProperties, exportServerProperties } from './serverProperties';
 
 export interface MinecraftServerConfig {
   directory: string;
   jarURL: string;
   ram: number; // In megabytes
+  properties: ServerProperties;
 }
 
 export interface QueryResult {
@@ -32,6 +34,7 @@ export default class MinecraftServer {
       throw new Error('Process already running.');
     }
 
+    // Make sure directory exists
     const directoryStats = await stat(this.config.directory);
     if (!directoryStats.isDirectory() && directoryStats.isFile()) {
       throw new Error(`${ this.config.directory } already exists but isn't a directory`);
@@ -39,11 +42,16 @@ export default class MinecraftServer {
       await mkdirp(this.config.directory);
     }
 
+    // Download jar file if it doesn't exist
     const jarFile = join(this.config.directory, 'minecraft.jar');
     const jarStats = await stat(jarFile);
     if (!jarStats.isFile()) {
       await download(this.config.jarURL, jarFile);
     }
+
+    // Create server.properties file
+    const serverPropertiesFile = join(this.config.directory, 'server.properties');
+    await writeFile(serverPropertiesFile, exportServerProperties(this.config.properties));
 
     const process = executeJar({
       Xmx: this.config.ram,
