@@ -53,6 +53,10 @@ export default class MinecraftServer {
     const serverPropertiesFile = join(this.config.directory, 'server.properties');
     await writeFile(serverPropertiesFile, exportServerProperties(this.config.properties));
 
+    // Agree to the EULA
+    const eulaFile = join(this.config.directory, 'eula.txt');
+    await writeFile(eulaFile, 'eula=true\n');
+
     const process = executeJar({
       Xmx: this.config.ram,
       Xms: Math.floor(this.config.ram * (2 / 3)),
