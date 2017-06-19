@@ -19,7 +19,8 @@
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
     "standard-version": "^4.2.0",
-    "typescript": "^2.3.4"
+    "typescript": "^2.3.4",
+    "yarn": "^0.24.5"
   },
   "config": {
     "commitizen": {
