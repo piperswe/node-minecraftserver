@@ -73,4 +73,13 @@ export default class MinecraftServer {
       version: query.raw.version,
     };
   }
+
+  async isOnline(): Promise<boolean> {
+    try {
+      await this.query();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
