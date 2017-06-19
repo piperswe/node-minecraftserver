@@ -69,13 +69,10 @@ export default class MinecraftServer {
   }
 
   async query(): Promise<QueryResult> {
-    // NOTE: When server.properties generation is implemented, this should
-    // be modified to use server-ip and server-port.
-
     const query = await Gamedig.query({
       type: 'minecraftping',
-      host: 'localhost',
-      port: 25565,
+      host: this.config.properties.serverIp || 'localhost',
+      port: this.config.properties.serverPort || 25565,
     });
 
     return {
