@@ -1,6 +1,6 @@
 {
   "name": "minecraftserver",
-  "version": "1.0.0-alpha.1",
+  "version": "0.2.0",
   "description": "An API for managing Minecraft server instances (especially useful for Minecraft web panels)",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -11,7 +11,7 @@
     "commit": "git-cz",
     "build": "tsc",
     "prepare": "yarn run build",
-    "release": "git checkout master && standard-version --prerelease alpha && git push --follow-tags origin master && npm publish"
+    "release": "git checkout master && standard-version --prerelease alpha --release-as minor && git push --follow-tags origin master && npm publish"
   },
   "devDependencies": {
     "@types/node": "^7.0.31",
