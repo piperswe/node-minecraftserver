@@ -1,6 +1,6 @@
 {
   "name": "minecraftserver",
-  "version": "0.1.1-alpha.0",
+  "version": "1.0.0-alpha.0",
   "description": "An API for managing Minecraft server instances (especially useful for Minecraft web panels)",
   "main": "dist/index.js",
   "types": "src/index.ts",
