@@ -7,6 +7,12 @@ import { download } from './net';
 import { JavaProcess, executeJar } from './java';
 import { ServerProperties, defaultServerProperties, exportServerProperties } from './serverProperties';
 
+/**
+ * Configuration for a vanilla Minecraft server.
+ *
+ * Other configuration (for mods, Bukkit, etc.) should be done with a file
+ * manager. That is not within the scope of this project.
+ */
 export interface MinecraftServerConfig {
   directory: string;
   jarURL: string;
@@ -14,6 +20,11 @@ export interface MinecraftServerConfig {
   properties: ServerProperties;
 }
 
+/**
+ * Result of quering a Minecraft server.
+ *
+ * This data may not be 100% true, it is only what the server reports.
+ */
 export interface QueryResult {
   name: string;
   players: Array<string>;
@@ -21,6 +32,9 @@ export interface QueryResult {
   version: string;
 }
 
+/**
+ * A runnable Minecraft server
+ */
 export default class MinecraftServer {
   public process?: JavaProcess;
   private config: MinecraftServerConfig;
@@ -29,6 +43,12 @@ export default class MinecraftServer {
     this.config = config;
   }
 
+  /**
+   * Run the Minecraft server
+   *
+   * Resolves once the server jar is started, not when the server is started or
+   * when it stops.
+   */
   async run() {
     if (this.process) {
       throw new Error('Process already running.');
@@ -65,10 +85,18 @@ export default class MinecraftServer {
     this.process = process;
   }
 
+  /**
+   * Stop the running Minecraft server
+   *
+   * Throws an exception if the server hasn't been started.
+   */
   stop() {
     this.process.stop();
   }
 
+  /**
+   * Execute a query against the Minecraft server
+   */
   async query(): Promise<QueryResult> {
     const query = await Gamedig.query({
       type: 'minecraftping',
@@ -84,6 +112,11 @@ export default class MinecraftServer {
     };
   }
 
+  /**
+   * Check if the Minecraft server is online
+   *
+   * (this only checks if it responds to a query)
+   */
   async isOnline(): Promise<boolean> {
     try {
       await this.query();

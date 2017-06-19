@@ -36,6 +36,11 @@ export interface ServerProperties {
   motd?: string;
 }
 
+/**
+ * Default vanilla Minecraft server.properties
+ *
+ * Taken from (no joke) https://server.properties/
+ */
 export const defaultServerProperties: ServerProperties = {
   generatorSettings: '',
   opPermissionLevel: 4,
@@ -74,10 +79,18 @@ export const defaultServerProperties: ServerProperties = {
   motd: 'A Minecraft Server',
 };
 
+/**
+ * Convert a camel case name to a hyphenated name
+ *
+ * (ex. serverPort to server-port)
+ */
 function camelCaseToHyphenated(str: string): string {
   return str.replace(/[A-Z]/, x => '-' + x.toLowerCase());
 }
 
+/**
+ * Convert a server properties object to a string
+ */
 export function exportServerProperties(properties: ServerProperties): string {
   const lines = Object.keys(properties).map(key => {
     const hyphenated = camelCaseToHyphenated(key);
