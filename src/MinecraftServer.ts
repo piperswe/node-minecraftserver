@@ -52,7 +52,7 @@ export default class MinecraftServer {
     // Create server.properties file
     const serverPropertiesFile = join(this.config.directory, 'server.properties');
     const properties = Object.assign({}, defaultServerProperties, this.config.properties);
-    await writeFile(serverPropertiesFile, exportServerProperties(this.config.properties));
+    await writeFile(serverPropertiesFile, exportServerProperties(properties));
 
     // Agree to the EULA
     const eulaFile = join(this.config.directory, 'eula.txt');
