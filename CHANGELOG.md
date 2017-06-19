@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-alpha.1"></a>
+# [1.0.0-alpha.1](https://github.com/zebMcCorkle/node-minecraftserver/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2017-06-19)
+
+
+### Bug Fixes
+
+* **MinecraftServer:** actually use default properties ([df41e39](https://github.com/zebMcCorkle/node-minecraftserver/commit/df41e39))
+* **MinecraftServer:** query the correct host and port ([6576a1a](https://github.com/zebMcCorkle/node-minecraftserver/commit/6576a1a))
+* **MinecraftServer:** use the new properties variable ([99919c7](https://github.com/zebMcCorkle/node-minecraftserver/commit/99919c7))
+
+
+
 <a name="1.0.0-alpha.0"></a>
 # [1.0.0-alpha.0](https://github.com/zebMcCorkle/node-minecraftserver/compare/v0.1.1-alpha.0...v1.0.0-alpha.0) (2017-06-19)
 
